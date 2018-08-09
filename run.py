@@ -29,7 +29,7 @@ def run():
             try:
                 if cherrypicked_cve_id and cve.cve_id != cherrypicked_cve_id:
                     # we are only interested in the cherry-picked CVE ID
-                    logger.info('{cve_id} not cherry-picked, skipping')
+                    logger.info('{cve_id} not cherry-picked, skipping'.format(cve_id=cve.cve_id))
                     continue
 
                 if not validate_cve(cve):
