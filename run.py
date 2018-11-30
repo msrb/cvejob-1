@@ -15,6 +15,7 @@ from cvejob.identifiers import get_identifier
 from cvejob.selectors.basic import VersionSelector
 from cvejob.outputs.victims import VictimsYamlOutput
 from cvejob.utils import parse_date_range
+from cvejob.filters.input import IsSupportedGitHubLanguageCheck
 
 import logging
 
@@ -166,7 +167,7 @@ def run():
 
         try:
 
-            if not validate_cve(doc):
+            if not validate_cve(doc, exclude_checks=[IsSupportedGitHubLanguageCheck]):
                 logger.debug(
                     "[{cve_id}] was filtered out by input checks".format(
                         cve_id=cve_id

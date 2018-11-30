@@ -156,6 +156,8 @@ class VersionSelector(object):
             for ver, repl in zip(upstream_match, upstream_match)
         }
 
+        print(cpe_versions)
+
         if len(version_repl) == len(cpe_versions):
             # exact match for all the versions, great!
             hit = True

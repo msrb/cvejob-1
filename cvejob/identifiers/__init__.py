@@ -5,12 +5,14 @@ Identifiers are responsible for identifying package name candidates.
 
 from cvejob.config import Config
 from cvejob.identifiers.basic import NaivePackageNameIdentifier
-# from cvejob.identifiers.nvdtoolkit import NvdToolkitPackageNameIdentifier
+from cvejob.identifiers.namehint import KnownPackageNameIdentifier
 
 
 def get_identifier(cve):
     """Get identifier object."""
-    if not Config.use_nvdtoolkit:
+    if Config.package_name:
+        cls = KnownPackageNameIdentifier
+    elif not Config.use_nvdtoolkit:
         cls = NaivePackageNameIdentifier
     else:
         raise NotImplementedError(
